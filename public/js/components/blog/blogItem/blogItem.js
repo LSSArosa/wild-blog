@@ -116,7 +116,6 @@ let blogItem = {
             UsersService.update(this.user).then((res) => {
                 return UsersService.setToken(res.data.token)
             }).then((user) => {
-            // }).then((this.user) => {
                 Materialize.toast((postFound ? 'Removed' : 'Added'), 2000, (postFound ? 'toast-warning' : 'toast-success'))
             }).catch((err) => {
                 let toastContent = `Error : ${err.data} !`
