@@ -83,14 +83,16 @@ let blogItem = {
 
         this.isFav = () => {
             if (!this.post) return
+            // what ????
+            //
             return (this.user.bookmarks.find((post_id) => post_id === this.post._id))
         }
-
-        this.isPublished = () => {
-          var checkbox = this.mycheckbox;
-           return  checkbox.checked
-          console.log("checkbox.checked", checkbox.checked);
-      }
+      //
+      //   this.isPublished = () => {
+      //     var checkbox = this.mycheckbox;
+      //     //  return  checkbox.checked
+      //     console.log("checkbox.checked", mycheckbox);
+      // }
 
         this.addOrRemoveToBookmark = () => {
             // Try to find post in bookmarks
