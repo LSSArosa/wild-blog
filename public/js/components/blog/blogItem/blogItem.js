@@ -83,7 +83,7 @@ let blogItem = {
 
         this.isFav = () => {
             if (!this.post) return
-            return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
+            return (this.user.bookmarks.find((post_id) => post_id === this.post._id))
         }
 
         this.isPublished = () => {
@@ -94,29 +94,27 @@ let blogItem = {
 
         this.addOrRemoveToBookmark = () => {
             // Try to find post in bookmarks
-            console.log("I am in the right place");
-            let postFound_id
-            let postFound = this.user.bookmarks.find((postFound) => {postFound_id === this.post._id})
-            // let postFound = this.user.bookmarks.find((post) => post.id === this.post._id)
-                    console.log("this.post._id", this.post._id);
-                    console.log("postFound", postFound_id );
+            let postFound = this.user.bookmarks.find((post_id) => post_id === this.post._id)
+
+                                          console.log("this.post._id", this.post._id);
+                                          console.log("postFound ? av", postFound );
             if (!postFound) {
                 //Not found
-                                          console.log("Not found");
                 this.user.bookmarks.push(this.post._id)
-                console.log("this.user.bookmarks", this.user.bookmarks);
-                console.log("this.post._id", this.post._id);
+                                          console.log("this.user.bookmarks", this.user.bookmarks);
+                                          console.log("Not found");
+                                          console.log("this.post._id", this.post._id);
             } else {
                                           console.log("Found");
+                                          console.log("this.user.bookmarks", this.user.bookmarks);
                 //Found
-                this.user.bookmark = this.user.bookmarks.filtered((post_id) => {
+                this.user.bookmark = this.user.bookmarks.filter((post_id) => {
                     return post_id !== this.post._id
                 })
             }
             console.log("postFound ?", postFound );
-            console.log("postFound_id ?", postFound_id );
             UsersService.update(this.user).then((res) => {
-                //return UsersService.setToken(res.data.token)
+                return UsersService.setToken(res.data.token)
             }).then((user) => {
             // }).then((this.user) => {
                 Materialize.toast((postFound ? 'Removed' : 'Added'), 2000, (postFound ? 'toast-warning' : 'toast-success'))
